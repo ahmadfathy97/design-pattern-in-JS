@@ -57,34 +57,39 @@
 // 2. module pattern //
 
 // let myTasks = [
-//   {id: 1, name: 'task1', completed: false},
-//   {id: 2, name: 'task2', completed: false},
-//   {id: 3, name: 'task3', completed: false}
+//  {id: 1, name: 'task1', completed: false},
+//  {id: 2, name: 'task2', completed: false},
+//  {id: 3, name: 'task3', completed: false}
 // ]
 //
 // let Task = (function () {
-//   let getTask = function (id) {
-//     return myTasks.find(task => task.id === id) || 'not found'
-//   }
-//   let editTask = function (id, newName) {
-//     myTasks.forEach((item) => {
-//       if(item.id === id){
-//         item.name = newName;
-//       }
-//     });
-//   }
-//   let completing = function (id){
-//     myTasks.forEach((item) => {
-//       if(item.id === id){
-//         item.completed = !this.completed;
-//       }
-//     });
-//   }
-//   return {
-//     getTask,
-//     editTask,
-//     completing
-//   }
+//  let privatVar = 'test';
+//  let getTask = function (id) {
+//    return myTasks.find(task => task.id === id) || 'not found'
+//  }
+//  let editTask = function (id, newName) {
+//    myTasks.forEach((item) => {
+//      if(item.id === id){
+//        item.name = newName;
+//      }
+//    });
+//  }
+//  let completing = function (id){
+//    myTasks.forEach((item) => {
+//      if(item.id === id){
+//        item.completed = !this.completed;
+//      }
+//    });
+//  }
+//  let returnThePrivateVar = ()=>{
+//    return privatVar;
+//  }
+//  return {
+//    getTask,
+//    editTask,
+//    completing,
+//    privatVar: returnThePrivateVar
+//  }
 // })();
 //
 // Task.editTask(1, 'task 0');
@@ -92,6 +97,7 @@
 // Task.completing(2);
 // console.log(Task.getTask(1));
 // console.log(Task.getTask(2));
+// console.log(Task.privatVar());
 
 
 // factory

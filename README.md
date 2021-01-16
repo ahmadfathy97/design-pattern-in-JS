@@ -1,8 +1,12 @@
 # this repo is me trying to study design patterns in JS
 
 ## creational patterns
+Creational patterns provide various object creation mechanisms, which increase flexibility and reuse of existing code.
+
 
 * #### constructor pattern
+  * A constructor is a special method used to initialize a newly created object once memory has been allocated for it.
+  * Object constructors are used to create specific types of objects - both preparing the object for use and accepting arguments which a constructor can use to set the values of member properties and methods when the object is first created.
 
 ``` js
 let Task = function(name) {
@@ -46,9 +50,10 @@ console.log(task1);
 task1.completing();
 task1.editTask('task0')
 ```
-
-
+---
 * #### module pattern
+  * Modules are an integral piece of any robust application's architecture and typically help in keeping the units of code for a project both cleanly separated and organized.
+  * Module pattern allows you to make some private variables
 
 ``` js
 let myTasks = [
@@ -58,6 +63,7 @@ let myTasks = [
 ]
 
 let Task = (function () {
+ let privatVar = 'test';
  let getTask = function (id) {
    return myTasks.find(task => task.id === id) || 'not found'
  }
@@ -75,10 +81,14 @@ let Task = (function () {
      }
    });
  }
+ let returnThePrivateVar = ()=>{
+   return privatVar;
+ }
  return {
    getTask,
    editTask,
-   completing
+   completing,
+   privatVar: returnThePrivateVar
  }
 })();
 
@@ -87,9 +97,11 @@ Task.completing(1);
 Task.completing(2);
 console.log(Task.getTask(1));
 console.log(Task.getTask(2));
+console.log(Task.privatVar());
 ```
-
+---
 * #### factory pattern
+  * The Factory pattern is another creational pattern concerned with the notion of creating objects. Where it differs from the other patterns in its category is that it doesn't explicitly require us to use a constructor. Instead, a Factory can provide a generic interface for creating objects, where we can specify the type of factory object we wish to be created.
 
 ```js
 function NormalTask(name){
