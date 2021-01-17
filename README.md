@@ -136,3 +136,81 @@ function logTasks(){
 logTasks.call(normalTask);
 logTasks.call(urgentTask);
 ```
+
+---
+* #### builder pattern
+  * Builder pattern aims to “Separate the construction of a complex object from its representation so that the same construction process can create different representations.” It is used to construct a complex object step by step and the final step will return the object. The process of constructing an object should be generic so that it can be used to create different representations of the same object.
+
+
+```js
+class Address {
+  constructor(zip, street) {
+    this.zip = zip
+    this.street = street
+  }
+}
+
+class User {
+  constructor(name) {
+    this.name = name
+  }
+}
+
+class UserBuilder {
+  constructor(name) {
+    this.user = new User(name)
+  }
+
+  setAge(age) {
+    this.user.age = age
+    return this
+  }
+
+  setPhone(phone) {
+    this.user.phone = phone
+    return this
+  }
+
+  setAddress(address) {
+    this.user.address = address
+    return this
+  }
+
+  build() {
+    return this.user
+  }
+}
+
+const builder = new UserBuilder('Bob')
+const user = builder.setAge(24).setAddress(new Address('12345', 'Main St.')).build()
+
+console.log(user);
+
+// another way
+// you can use a default value here easily
+class Address {
+  constructor(zip, street) {
+    this.zip = zip
+    this.street = street
+  }
+}
+
+class User {
+  constructor(name, { age, phone = 'default phone', address} = {}) {
+    this.name = name;
+    this.age = age;
+    this.phone = phone;
+    this.address = address || {zip: 'default zip', street: 'default stret' };
+  }
+}
+
+let user = new User('Bob', {age: 24, address: {zip:'000000', street: 'Main st.'}})
+console.log(user);
+
+```
+---
+## Resources
+
+* [Learning JavaScript Design Patterns book by Addy Osmani](https://addyosmani.com/resources/essentialjsdesignpatterns/book/)
+* [Web Dev Simplified playlist](https://www.youtube.com/playlist?list=PLZlA0Gpn_vH_CthENcPCM0Dww6a5XYC7f)
+* [Practical Design Patterns in JavaScript course](https://app.pluralsight.com/library/courses/javascript-practical-design-patterns)
